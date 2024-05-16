@@ -188,6 +188,7 @@ def recovering_scene(imgO, t, A):
 
 if __name__ == '__main__':
     img_path = './images/img_raw'
+    dark_path = './images/img_dark'
     t_path = './images/img_t'
     dehaze_path = './images/img_dehaze'
     imgs = os.listdir(img_path)
@@ -196,6 +197,7 @@ if __name__ == '__main__':
         img = cv2.imread(img_path + "/" + each)
 
         img_dark = dark_channel(img)
+        cv2.imwrite(dark_path + '/' + each.split('.')[0] + '_dark.jpg', img_dark)
 
         A = estimate_A(img, img_dark)
 
